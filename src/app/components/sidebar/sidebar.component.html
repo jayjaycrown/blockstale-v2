@@ -1,0 +1,46 @@
+<!-- <div class="logo">
+  <a href="https://www.creative-tim.com?ref=bda-sidebar-logo" class="simple-text logo-mini">
+    <div class="logo-img">
+      <img src="./assets/img/angular2-logo-white.png" alt="" />
+    </div>
+  </a>
+  <a href="https://www.creative-tim.com?ref=bda-sidebar-logo" class="simple-text logo-normal">
+    Creative Tim
+  </a>
+</div>
+<div class="sidebar-wrapper">
+  <ul class="nav" >
+    <li
+      routerLinkActive="active"
+      *ngFor="let menuItem of menuItems"
+      class="{{ menuItem.class }} nav-item"
+    >
+      <a [routerLink]="[menuItem.path]">
+        <i class="tim-icons  {{ menuItem.icon }}"></i>
+        <p>{{ menuItem.title }}</p>
+      </a>
+    </li>
+  </ul>
+</div> -->
+
+
+
+<div class="page-sidebar fixedscroll">
+
+  <!-- MAIN MENU - START -->
+  <div class="page-sidebar-wrapper crypto" id="main-menu-wrapper">
+    <ul class='wraplist'>
+      <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{ menuItem.class }} nav-item">
+        <a [routerLink]="[menuItem.path]">
+          <i class="img">
+            <img [src]=" menuItem.icon" alt="" class="ic1 width-20">
+          </i>
+          <span class="title">{{ menuItem.title }}</span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+  <!-- MAIN MENU - END -->
+
+</div>

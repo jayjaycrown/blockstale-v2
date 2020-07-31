@@ -1,0 +1,69 @@
+body {
+  text-align: center;
+  padding-top: 25px;
+}
+
+.custom-radio-button div {
+  display: inline-block;
+}
+.custom-radio-button input[type="radio"] {
+  display: none;
+}
+.custom-radio-button input[type="radio"] + label {
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+.custom-radio-button input[type="radio"] + label span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  line-height: 44px;
+}
+.custom-radio-button input[type="radio"] + label span img {
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.custom-radio-button input[type="radio"]#color-red + label span {
+   // background-color: red;
+   background-image: url('../../../assets/img/xrp.png');
+  background-size: 30px 30px;
+}
+.custom-radio-button input[type="radio"]#color-blue + label span {
+  // background-color: blue;
+   background-image: url('../../../assets/img/ltc.png');
+  background-size: 30px 30px;
+}
+.custom-radio-button input[type="radio"]#color-green + label span {
+  // background-color: green;
+  background-image: url('../../../assets/img/eth.png');
+  background-size: 30px 30px;
+}
+.custom-radio-button input[type="radio"]#color-orange + label span {
+  // background-color: orange;
+  background-image: url('../../../assets/img/btc.png');
+  background-size: 30px 30px;
+}
+.custom-radio-button input[type="radio"]#color-pink + label span {
+  background-image: url('../../../assets/img/xmr.png');
+  background-size: 30px 30px;
+}
+.custom-radio-button input[type="radio"]:checked + label span {
+  opacity: 1;
+  // background: url("../../../assets/img/tick.png")
+  //   center center no-repeat;
+    background-size: 40px 40px;
+  // width: 40px; 
+  // height: 40px;
+  display: inline-block;
+  border: 3px solid #7e11d3;
+}

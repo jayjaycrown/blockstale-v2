@@ -1,0 +1,80 @@
+
+<div class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header bg-primary">
+          <h4 class="card-title  w-text pull-left">Help Desk</h4>
+          <span class="pull-right">
+            <button class="btn btn-outline-primary" >Add Ticket</button>
+          </span>
+        </div>
+          <div class="">
+            <div class="table-responsive">
+            <table
+              class="table table-striped table-bordered table-sm row-border hover"
+              datatable
+              [dtOptions]="dtOptions"
+            >
+              <thead>
+                <tr>
+                  <th>Ticket Id</th>
+                  <th>Priority</th>
+                  <th>Title</th>
+                  <th>Message</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>ASDFGH</td>
+                  <td>High</td>
+                  <td>Testing</td>
+                  <td style="width: 40% !important;">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                    Consectetur, soluta?
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, praesentium.
+                  </td>
+                  <td>Pending</td>
+                  <td style="text-align: center !important;"><i class="fa fa-trash text-danger"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #addTicket>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">`
+          <form>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Title</label>
+                  <input type="text" class="form-control" placeholder="Title">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Priority</label>
+                  <select name="" id="" class="custom-select">
+                    <option value="">High</option>
+                    <option value="">Medium</option>
+                    <option value="">Low</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

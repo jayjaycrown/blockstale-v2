@@ -1,0 +1,203 @@
+<div class="content">
+  <div class="row">
+    <div class="col-lg-12">
+      <section class="box nobox marginBottom0">
+        <div class="content-body">
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="statistics-box">
+                <div class="mb-15">
+                  <i class="pull-left ico-icon icon-md icon-primary">
+                    <img
+                      src="assets/data/crypto-dash/s1.png"
+                      class="ico-icon-o"
+                      alt=""
+                    />
+                  </i>
+                  <div class="stats">
+                    <h4 class="boldy mb-5">₦ 40,456.00</h4>
+                    <span>Wallet Balance</span>
+                  </div>
+                </div>
+                <div class="text-center">
+
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary">Fund</button>
+                    <button type="button" class="btn btn-info">Witdraw</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="statistics-box">
+                <div class="mb-15">
+                  <i class="pull-left ico-icon icon-md icon-primary">
+                    <img
+                      src="assets/data/crypto-dash/coin1.png"
+                      class="ico-icon-o"
+                      alt=""
+                    />
+                  </i>
+                  <div class="stats">
+                    <h3 class="boldy mb-5">₿ 0.002</h3>
+                    <span>BTC Balance</span>
+                  </div>
+                </div>
+                <div class="text-center">
+
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success">Buy</button>
+                    <button type="button" class="btn btn-warning">Sell</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="statistics-box">
+                <div class="mb-15">
+                  <i class="pull-left ico-icon icon-md icon-primary">
+                    <img
+                      src="assets/data/crypto-dash/coin2.png"
+                      class="ico-icon-o"
+                      alt=""
+                    />
+                  </i>
+                  <div class="stats">
+                    <h3 class="boldy mb-5">Ξ 0.15</h3>
+                    <span>ETH Balance</span>
+                  </div>
+                </div>
+                <div class="text-center">
+
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success">Buy</button>
+                    <button type="button" class="btn btn-info">Sell</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="statistics-box">
+                <div class="mb-15">
+                  <i class="pull-left ico-icon icon-md icon-primary">
+                    <img
+                      src="assets/data/crypto-dash/coin8.png"
+                      class="ico-icon-o"
+                      alt=""
+                    />
+                  </i>
+                  <div class="stats">
+                    <h3 class="boldy mb-5">Ł 100.00</h3>
+                    <span>LTC Balance</span>
+                  </div>
+                </div>
+                <div class="text-center">
+
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-success">Buy</button>
+                    <button type="button" class="btn btn-info">Sell</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End .row -->
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-7">
+      <section class="box">
+        <div class="content-body p-0 m-0">
+          <coingecko-coin-compare-chart-widget
+            coin-ids="bitcoin,ethereum,litecoin"
+            currency="usd"
+            locale="en"
+          ></coingecko-coin-compare-chart-widget>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-sm-12 col-md-5">
+      <section class="box">
+        <header class="panel_header">
+          <h2 class="title pull-left">Cryptocurrency Status</h2>
+        </header>
+        <div class="content-body">
+          <div class="row">
+            <!-- <div class="col-sm-12">
+              <div class="coin-box2 flex align-items-center">
+                <div class="coin-icon mr-10">
+                  <img src="assets/data/crypto-dash/coin1.png" alt="" />
+                </div>
+
+                <h5 class="coin-name boldy">Bitcoin</h5>
+                <h5 class="coin-price boldy">
+                  {{ btcData.PRICE | currency: "₦ " }}
+                </h5>
+                <p class="mb-0" [class]="changepositive">
+                {{ btcData.CHANGEPCTHOUR | number:'2.1-2' }}%
+                  <i class="ml-10" [class]="iconClass"></i>
+                </p>
+              </div>
+              <div class="coin-box2 flex align-items-center">
+                <div class="coin-icon mr-10">
+                  <img src="assets/data/crypto-dash/coin2.png" alt="" />
+                </div>
+
+                <h5 class="coin-name boldy">Ethereum</h5>
+                <h5 class="coin-price boldy">
+                  {{ ethData.PRICE | currency: "₦ " }}
+                </h5>
+                <p class="mb-0 red-text" [class]="ethColor">
+                {{ ethData.CHANGEPCTHOUR| number:'2.1-2'  }}%
+                  <i class="ml-10" [class]="ethIcon"></i>
+                </p>
+              </div>
+              <div class="coin-box2 flex align-items-center">
+                <div class="coin-icon mr-10">
+                  <img src="assets/data/crypto-dash/coin8.png" alt="" />
+                </div>
+
+                <h5 class="coin-name boldy">Litecoin</h5>
+                <h5 class="coin-price boldy">
+                  {{ ltcData.PRICE | currency: "₦ " }}
+                </h5>
+                <p class="mb-0 red-text" [class]="ltcColor">
+                {{ ltcData.CHANGEPCTHOUR | number:'2.1-2'  }}%
+                  <i class="ml-10" [class]="ltcIcon"></i>
+                </p>
+              </div>
+              <div class="coin-box2 flex align-items-center">
+                <div class="coin-icon mr-10">
+                  <img src="assets/data/crypto-dash/coin6.png" alt="" />
+                </div>
+
+                <h5 class="coin-name boldy">Dogecoin</h5>
+                <h5 class="coin-price boldy">$0.0846</h5>
+                <p class="mb-0 green-text">
+                  2.05%<i class="complete fa fa-arrow-up ml-10"></i>
+                </p>
+              </div>
+              <div class="coin-box2 mb-0 flex align-items-center">
+                <div class="coin-icon mr-10">
+                  <img src="assets/data/crypto-dash/coin7.png" alt="" />
+                </div>
+
+                <h5 class="coin-name boldy">Monero</h5>
+                <h5 class="coin-price boldy">$475.048</h5>
+                <p class="mb-0 green-text">
+                  2.05%<i class="complete fa fa-arrow-up ml-10"></i>
+                </p>
+              </div>
+            </div> -->
+          </div>
+          <!-- End .row -->
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
