@@ -45,6 +45,7 @@
     "cryptocoins-font": "^1.0.1",
     "datatables.net": "^1.10.21",
     "datatables.net-dt": "^1.10.21",
+    "enhanced-resolve": "^4.3.0",
     "express": "^4.17.1",
     "jquery": "^3.5.1",
     "ngx-bootstrap": "^5.6.1",
