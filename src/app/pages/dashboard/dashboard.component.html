@@ -134,10 +134,10 @@
                   <img src="assets/data/crypto-dash/coin1.png" alt="" />
                 </div>
 
-                <h5 class="coin-name boldy">Bitcoin</h5>
-                <h5 class="coin-price boldy">
+                <h6 class="coin-name boldy">Bitcoin</h6>
+                <h6 class="coin-price boldy">
                   {{ btcData.PRICE | currency: "₦ " }}
-                </h5>
+                </h6>
                 <p class="mb-0" [class]="changepositive">
                 {{ btcData.CHANGEPCTHOUR | number:'2.1-2' }}%
                   <i class="ml-10" [class]="iconClass"></i>
@@ -148,10 +148,10 @@
                   <img src="assets/data/crypto-dash/coin2.png" alt="" />
                 </div>
 
-                <h5 class="coin-name boldy">Ethereum</h5>
-                <h5 class="coin-price boldy">
+                <h6 class="coin-name boldy">Ethereum</h6>
+                <h6 class="coin-price boldy">
                   {{ ethData.PRICE | currency: "₦ " }}
-                </h5>
+                </h6>
                 <p class="mb-0 red-text" [class]="ethColor">
                 {{ ethData.CHANGEPCTHOUR| number:'2.1-2'  }}%
                   <i class="ml-10" [class]="ethIcon"></i>
@@ -162,10 +162,10 @@
                   <img src="assets/data/crypto-dash/coin8.png" alt="" />
                 </div>
 
-                <h5 class="coin-name boldy">Litecoin</h5>
-                <h5 class="coin-price boldy">
+                <h6 class="coin-name boldy">Litecoin</h6>
+                <h6 class="coin-price boldy">
                   {{ ltcData.PRICE | currency: "₦ " }}
-                </h5>
+                </h6>
                 <p class="mb-0 red-text" [class]="ltcColor">
                 {{ ltcData.CHANGEPCTHOUR | number:'2.1-2'  }}%
                   <i class="ml-10" [class]="ltcIcon"></i>
