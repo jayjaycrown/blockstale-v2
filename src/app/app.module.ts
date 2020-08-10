@@ -21,6 +21,10 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ComponentsModule } from './components/components.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './_helpers/error.interceptor';
+import { AuthInterceptor } from './_helpers/auth.interceptor';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   imports: [
@@ -37,10 +41,14 @@ import { ComponentsModule } from './components/components.module';
     LoadingBarRouterModule,
     // for Core use:
     LoadingBarModule,
+    AlertModule.forRoot(),
     ToastrModule.forRoot()
+  ],  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
+
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
-  providers: [],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
