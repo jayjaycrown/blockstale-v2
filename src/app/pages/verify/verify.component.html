@@ -1,1 +1,48 @@
-<p>verify works!</p>
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <div class="card">
+          <div class="row">
+
+            <div class="col-md-6 offset-md-3  right">
+
+              <div class="form-div">
+                <h3>Verify Account</h3>
+                <small>Enter the verification code sent to your registered phone number</small>
+                <br>
+                <br>
+                <ngx-loading-bar [color]="'red'"></ngx-loading-bar>
+
+                <bs-alert type="danger" *ngIf="serverErrorMessages" dismissible="true" dismissOnTimeout="5000">
+                  <strong>Oops!</strong> {{serverErrorMessages}}
+                </bs-alert>
+                <alert type="success" *ngIf="successMessage" dismissible="true" dismissOnTimeout="5000">
+                  {{successMessage}}
+                </alert>
+                <form name="form" #verifyForm="ngForm" (ngSubmit)="verifyForm.valid && onSubmit(verifyForm)">
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fa fa-user-secret"></i></div>
+                    </div>
+                    <input type="text" name="verify" class="form-control" placeholder="Enter verification code" required #verify="ngModel" [(ngModel)]="model.verify"
+                      [ngClass]="{ 'is-invalid': verifyForm.submitted && verify.invalid }" required verify>
+                    <div *ngIf="verifyForm.submitted && verify.invalid" class="invalid-feedback">
+                      <div *ngIf="verify.errors.required"> verification code is required</div>
+                    </div>
+                  </div>
+
+                  <input type="submit" class="btn btn-primary btn-lg btn-block btn-round" [disabled]="!verifyForm.valid"
+                    value="Verify Account">
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

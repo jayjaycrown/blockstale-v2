@@ -1,1 +1,78 @@
-<p>response-reset works!</p>
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 offset-md-1">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-6 offset-md-3  right">
+              <div class="form-div" *ngIf="check">
+                <h3>Enter OTP</h3>
+                <small>Enter the OTP sent to your registered phone number</small>
+                <br><br>
+                <ngx-loading-bar [color]="'red'"></ngx-loading-bar>
+                <bs-alert type="danger" *ngIf="serverErrorMessages" dismissible="true" dismissOnTimeout="5000">
+                  <strong>Oops!</strong> {{serverErrorMessages}}
+                </bs-alert>
+                <alert type="success" *ngIf="successMessage" dismissible="true" dismissOnTimeout="5000">
+                  {{successMessage}}
+                </alert>
+                <div >
+                  <form name="form" #request="ngForm" (ngSubmit)="request.valid && onSubmit(request)">
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fa  fa-phone-square"></i></div>
+                      </div>
+                      <input type="text" name="otp" class="form-control" id="inlineFormInputGroup"
+                        placeholder="Enter OTP" required #otp="ngModel" [(ngModel)]="model.otp" minlength="6"
+                        [ngClass]="{ 'is-invalid': request.submitted && otp.invalid }" required otp>
+                      <div *ngIf="request.submitted && otp.invalid" class="invalid-feedback">
+                        <div *ngIf="otp.errors.required">otp is required</div>
+                        <div *ngIf="otp.errors.minlength">otp must be at least 6 digits</div>
+                      </div>
+                    </div>
+                    <input type="submit" class="btn btn-primary btn-lg btn-block btn-round" [disabled]="!request.valid"
+                      value="Submit">
+                  </form>
+                </div>
+
+
+
+              </div>
+              <div class="form-div" *ngIf="reset">
+                 <h3>Enter New Password</h3>
+                 <small>Enter your new password</small>
+                 <br><br>
+                 <ngx-loading-bar [color]="'red'"></ngx-loading-bar>
+                 <bs-alert type="danger" *ngIf="serverErrorMessages" dismissible="true" dismissOnTimeout="5000">
+                   <strong>Oops!</strong> {{serverErrorMessages}}
+                 </bs-alert>
+                 <alert type="success" *ngIf="successMessage" dismissible="true" dismissOnTimeout="5000">
+                   {{successMessage}}
+                 </alert>
+                 <div >
+                   <form name="reset" #reset="ngForm" (ngSubmit)="reset.valid && OnReset(reset)">
+                     <div class="input-group mb-3">
+                       <div class="input-group-prepend">
+                         <div class="input-group-text"><i class="fa  fa-phone-square"></i></div>
+                       </div>
+                       <input type="password" name="password" class="form-control" id="inlineFormInputGroup"
+                         placeholder="Enter password" required #password="ngModel" [(ngModel)]="resetModel.password"
+                         minlength="6" [ngClass]="{ 'is-invalid': reset.submitted && password.invalid }" required
+                         password>
+                       <div *ngIf="reset.submitted && password.invalid" class="invalid-feedback">
+                         <div *ngIf="password.errors.required">password is required</div>
+                         <div *ngIf="password.errors.minlength">password must be at least 6 digits</div>
+                       </div>
+                     </div>
+                     <input type="submit" class="btn btn-primary btn-lg btn-block btn-round" [disabled]="!reset.valid"
+                       value="Submit">
+                   </form>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
