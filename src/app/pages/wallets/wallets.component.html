@@ -1,68 +1,64 @@
 <div class="content">
   <div class="row">
 
-    <div class="col-md-4 col-sm-6">
-      <div class="statistics-box text-center gradient-blue mt-15">
-        <div class="crypto-icon mb-15">
-         <i class="fa fa-wallet text-white"></i>
-        </div>
-        <h4 class="coin-name boldy w-text">Wallet Balance</h4>
-        <p class="mb-0 g-text" style="font-weight: bold;">₦ 40,456.00</p>
-      </div>
-    </div>
-
-
-    <div class="col-md-4 col-sm-6">
-      <div class="statistics-box text-center gradient-yellow mt-15">
-        <div class="crypto-icon mb-15">
-          <i class="cc BTC w-text"></i>
-        </div>
-        <h4 class="coin-name boldy w-text">Bitcoin Balance</h4>
-        <p class="mb-0 g-text" style="font-weight: bold;">0.312373 BTC</p>
-      </div>
-    </div>
-
-    <div class="col-lg-4 col-sm-6 col-xs-12">
-      <div class="statistics-box text-center gradient-pink mt-15">
-        <div class="crypto-icon mb-15">
-          <i class="cc ETH w-text"></i>
-        </div>
-        <h4 class="coin-name boldy w-text">Ethereum Balance</h4>
-        <p class="mb-0 g-text" style="font-weight: bold;">1.007346 ETH</p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 col-xs-12">
-      <div class="statistics-box text-center gradient-green mt-15">
-        <div class="crypto-icon mb-15">
-          <i class="cc LTC w-text"></i>
-        </div>
-        <h4 class="coin-name boldy w-text">Litecoin Balance</h4>
-        <p class="mb-0 g-text" style="font-weight: bold;">2.021421 LTC</p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 col-xs-12">
-      <div class="statistics-box text-center gradient-violet mt-15">
-        <div class="crypto-icon mb-15">
-          <i class="cc XRP w-text"></i>
-        </div>
-        <h4 class="coin-name boldy w-text">Ripple Balance</h4>
-        <p class="mb-0 g-text" style="font-weight: bold;">323.0421 XRP</p>
-      </div>
-    </div>
-    <div class="col-lg-4 col-sm-6 col-xs-12">
-      <div class="statistics-box text-center gradient-orange mt-15">
-        <div class="crypto-icon mb-15">
-          <i class="cc XMR w-text"></i>
-        </div>
-        <h4 class="coin-name boldy w-text">Monero Balance</h4>
-        <p class="mb-0 g-text" style="font-weight: bold;">323.0421 XMR</p>
-      </div>
-    </div>
   </div>
   <div class="row mt-5">
-    <div class="col-md-6 col-sm-10 offset-md-3 offset-sm-1">
+    <div class="col-sm-6">
       <div class="card">
-        <div class="card-body"></div>
+        <div class="card-header">
+          <h4 class="card-title">Wallet Balance</h4>
+        </div>
+        <div class="card-body">
+          <h4> {{ wallet.walletBalance  | currency : 'NGN'}} </h4>
+          <div>
+            <button class="btn btn-primary" (click)="onFund()">Fund Wallet</button>
+            <button class="btn btn-info" (click)="onWithdraw()">Witdraw From Wallet</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 " *ngIf="fund">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Fund Wallet</h4>
+        </div>
+        <div class="card-body">
+          <form name="fundWallet" #fundWallet="ngForm" (ngSubmit)="fundWallet.form.valid && OnFundWallet(fundWallet)">
+            <div class="controls">
+              <label>Email</label>
+              <input type="email" name="email" class="form-control"
+              placeholder="Enter email" required
+              #email="ngModel" [(ngModel)]="walletModel.email"
+              [ngClass]="{ 'is-invalid': fundWallet.submitted && email.invalid }"  email>
+            </div>
+
+            <div class="controls">
+              <label>Amount</label>
+              <input type="number" name="amount" class="form-control"
+              #amount="ngModel" [(ngModel)]="walletModel.amount"
+              [ngClass]="{ 'is-invalid': fundWallet.submitted && amount.invalid }" required amount>
+            </div>
+            <input type="submit" class="btn btn-primary btn-block" [disabled]="!fundWallet.valid" value="Fund Wallet">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6" *ngIf="withdraw">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Witdraw from Wallet</h4>
+        </div>
+        <div class="card-body">
+          <form name="witdrawWallet" #witdrawWallet="ngForm" (ngSubmit)="witdrawWallet.form.valid && witdrawFromWallet(witdrawWallet)">
+            <div class="controls">
+              <label>Amount</label>
+              <input type="number" name="amountGotten" class="form-control"
+              #amountGotten="ngModel" [(ngModel)]="walletModel.amountGotten"
+              [ngClass]="{ 'is-invalid': witdrawWallet.submitted && amountGotten.invalid }" required amountGotten>
+            </div>
+            <input type="submit" class="btn btn-primary btn-block" [disabled]="!witdrawWallet.valid" value="Witdraw from Wallet">
+          </form>
+        </div>
       </div>
     </div>
   </div>

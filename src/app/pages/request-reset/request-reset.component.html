@@ -4,37 +4,43 @@
       <div class="col-md-10 offset-md-1">
         <div class="card">
           <div class="row">
-             <div class="col-md-6 offset-md-3  right">
+            <div class="col-md-6 offset-md-3 right">
               <div class="form-div">
-                 <h3>Forgot Password?</h3>
-                 <small>Enter your Phone Number to request OTP</small>
-                 <br><br>
-                 <ngx-loading-bar [color]="'red'"></ngx-loading-bar>
-                 <bs-alert type="danger" *ngIf="serverErrorMessages" dismissible="true" dismissOnTimeout="5000">
-                   <strong>Oops!</strong> {{serverErrorMessages}}
-                 </bs-alert>
-                 <bs-alert type="success" *ngIf="successMessage" dismissible="true" dismissOnTimeout="5000">
-                   {{successMessage}}
-                 </bs-alert>
-                  <form name="form" #request="ngForm" (ngSubmit)="request.valid && onSubmit(request)">
-                    <div class="input-group mb-3">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text"><i class="fa  fa-phone-square"></i></div>
-                      </div>
-                      <input type="number" name="phoneNumber" class="form-control" id="inlineFormInputGroup"
-                        placeholder="Enter your phone number" required #phoneNumber="ngModel"
-                        [(ngModel)]="model.phoneNumber" minlength="10"
-                        [ngClass]="{ 'is-invalid': request.submitted && phoneNumber.invalid }" required phoneNumber>
-                      <div *ngIf="request.submitted && phoneNumber.invalid" class="invalid-feedback">
-                        <div *ngIf="phoneNumber.errors.required">phoneNumber is required</div>
-                        <div *ngIf="phoneNumber.errors.minlength">phoneNumber must be at least 10 digits</div>
+                <h3>Forgot Password?</h3>
+                <small>Enter your Phone Number to request OTP</small>
+                <br /><br />
+                <bs-alert type="danger" *ngIf="serverErrorMessages" dismissible="true" dismissOnTimeout="5000">
+                  <strong>Oops!</strong> {{ serverErrorMessages }}
+                </bs-alert>
+                <bs-alert type="success" *ngIf="successMessage" dismissible="true" dismissOnTimeout="5000">
+                  {{ successMessage }}
+                </bs-alert>
+                <form name="form" #request="ngForm" (ngSubmit)="request.valid && onSubmit(request)">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        <i class="fa fa-phone-square"></i>
                       </div>
                     </div>
-                    <input type="submit" class="btn btn-primary btn-lg btn-block"
-                      [disabled]="!request.valid" value="Sign In">
-                  </form>
+                    <input type="number" name="phoneNumber" class="form-control" id="inlineFormInputGroup"
+                      placeholder="Enter your phone number" required #phoneNumber="ngModel"
+                      [(ngModel)]="model.phoneNumber" minlength="10" [ngClass]="{
+                        'is-invalid': request.submitted && phoneNumber.invalid
+                      }" required phoneNumber />
+                    <div *ngIf="request.submitted && phoneNumber.invalid" class="invalid-feedback">
+                      <div *ngIf="phoneNumber.errors.required">
+                        phoneNumber is required
+                      </div>
+                      <div *ngIf="phoneNumber.errors.minlength">
+                        phoneNumber must be at least 10 digits
+                      </div>
+                    </div>
+                  </div>
+                  <input type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!request.valid"
+                    value="Sign In" />
+                </form>
               </div>
-             </div>
+            </div>
           </div>
         </div>
       </div>

@@ -24,17 +24,18 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     if (this.userService.currentUserValue) {
-      this.router.navigate(['/home']);
+      alert('Already logged in');
+      this.router.navigate(['/dashboard']);
     }
   }
 
   ngOnInit(): void {
     // tslint:disable-next-line: no-string-literal
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
     // Get the query params
     this.route.queryParams
       // tslint:disable-next-line: no-string-literal
-      .subscribe((params) => (this.return = params['return'] || '/home'));
+      .subscribe((params) => (this.return = params['return'] || '/dashboard'));
   }
 
   onSubmit(form: NgForm) {

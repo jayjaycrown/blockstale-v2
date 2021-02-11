@@ -43,7 +43,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fa fa-unlock" aria-hidden="true"></i></div>
                     </div>
-                    <input type="password" class="form-control" placeholder="Enter your password" name="password"
+                    <input type="password" autocomplete="current-password" class="form-control" placeholder="Enter your password" name="password"
                       [(ngModel)]="model.password" #password="ngModel"
                       [ngClass]="{ 'is-invalid': signInForm.submitted && password.invalid }" required minlength="6" />
                     <div *ngIf="signInForm.submitted && password.invalid" class="invalid-feedback">

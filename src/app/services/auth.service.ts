@@ -47,7 +47,7 @@ export class AuthService {
 
   register(user: any) {
     return this.http
-      .post<UserModel>(apiUrl + '/signup', user, httpOptions)
+      .post<UserModel>(apiUrl + '/signup', user)
       .pipe(catchError(this.handleError('Register', user)));
   }
 
@@ -58,14 +58,13 @@ export class AuthService {
   }
 
   verify(data) {
-    // console.log(apiUrl + '/verify/' + data);
     return this.http
       .get(apiUrl + '/verify/' + data, httpOptions)
       .pipe(catchError(this.handleError('verify')));
   }
 
   login(authCredentials: any) {
-    return this.http.post(apiUrl + '/login', authCredentials, httpOptions).pipe(
+    return this.http.post(apiUrl + '/login', authCredentials).pipe(
       map((user) => {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
@@ -113,7 +112,7 @@ export class AuthService {
   }
 
 
-   setUser(user: string, status: string) {
+  setUser(user: string, status: string) {
     localStorage.setItem('user', user);
     localStorage.setItem('status', status);
   }
@@ -130,7 +129,7 @@ export class AuthService {
         errorMessage = `${error.message}`;
         return throwError(errorMessage);
       }
-      alert(errorMessage);
+      // alert(errorMessage);
 
       // console.error(error);
       this.log(`${operation} failed: ${error.message}`);
@@ -140,7 +139,7 @@ export class AuthService {
   }
 
   private log(message: string) {
-    // console.log(message);
-    alert(message);
+    console.log(message);
+    // alert(message);
   }
 }

@@ -6,12 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-layout.component.scss']
 })
 export class AdminLayoutComponent implements OnInit {
-  public sidebarColor = 'red';
 
-  constructor() {}
-
-  changeDashboardColor() {
-     const color = 'white-content'
+  constructor() { }
+changeDashboardColor() {
+    const color = 'white-content'
     const body = document.getElementsByTagName('body')[0];
     if (body && color === 'white-content') {
         body.classList.add(color);

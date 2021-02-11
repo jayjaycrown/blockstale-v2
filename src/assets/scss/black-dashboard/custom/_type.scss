@@ -34,7 +34,7 @@ a{
     font-weight: $font-weight-light;
     &:hover,
     &:focus{
-        color: $primary;
+        color: $primary !important;
     }
 }
 h1, .h1 {

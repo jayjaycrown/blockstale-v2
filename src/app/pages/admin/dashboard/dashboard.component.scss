@@ -1,0 +1,14 @@
+
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+  color: #fff;
+  background-color: #3f0352 !important;
+}
+.btn-danger-outline{
+  background: transparent;
+  color: red;
+}
+
+.btn-danger-outline:hover {
+  background-color: #eee !important;
+}

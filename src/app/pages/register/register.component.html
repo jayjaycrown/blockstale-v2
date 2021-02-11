@@ -28,7 +28,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fa  fa-phone-square" aria-hidden="true"></i></div>
                     </div>
-                    <input type="number" class="form-control" id="inlineFormInputGroup"
+                    <input type="number" autocomplete="tel-national" class="form-control" id="inlineFormInputGroup"
                       placeholder="Enter your Phone Number" #phoneNumber="ngModel" [(ngModel)]="model.phoneNumber"
                       name="phoneNumber" minlength="10" required
                       [ngClass]="{'invalid-textbox' :signUpForm.submitted && !phoneNumber.valid }">
@@ -43,7 +43,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fa fa-unlock" aria-hidden="true"></i></div>
                     </div>
-                    <input type="password" class="form-control" #password="ngModel" [(ngModel)]="model.password"
+                    <input type="password" autocomplete="new-password" class="form-control" #password="ngModel" [(ngModel)]="model.password"
                       name="password" placeholder="Enter Password" minlength="4" required
                       [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
                     <div *ngIf="signUpForm.submitted && password.errors" class="alert alert-danger">
@@ -58,7 +58,7 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text"><i class="fa fa-unlock" aria-hidden="true"></i></div>
                     </div>
-                    <input type="password" class="form-control" #confirmPassword="ngModel"
+                    <input type="password" autocomplete="current-password" class="form-control" #confirmPassword="ngModel"
                       [(ngModel)]="model.confirmPassword" compare="password" name="confirmPassword"
                       placeholder="Confirm Password" minlength="4" required
                       [ngClass]="{'invalid-textbox' :signUpForm.submitted && !confirmPassword.valid }">

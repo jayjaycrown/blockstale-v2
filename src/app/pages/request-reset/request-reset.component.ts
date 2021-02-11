@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { LoadingBarService } from '@ngx-loading-bar/core';
 
 import { AuthService } from '../../services/auth.service';
 import { UserModel } from '../../models/user.model';
@@ -12,7 +11,7 @@ import { UserModel } from '../../models/user.model';
 })
 export class RequestResetComponent implements OnInit {
 
-   serverErrorMessages;
+  serverErrorMessages;
   successMessage;
   model = {
     phoneNumber: ''
@@ -39,7 +38,7 @@ export class RequestResetComponent implements OnInit {
     }, err => {
         console.log(err);
         this.serverErrorMessages = err;
-     });
+    });
   }
 
 }

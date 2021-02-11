@@ -1,6 +1,10 @@
 <div class="content">
   <div class="row">
     <div class="col-lg-12">
+      <alert type="success" dismissible="true" dismissOnTimeout="5000" *ngIf="successMessage"> {{ successMessage }}
+        </alert>
+        <alert type="warning" dismissible="true" dismissOnTimeout="5000" *ngIf="serverErrorMessage">
+          {{ serverErrorMessage }} </alert>
       <section class="box nobox marginBottom0">
         <div class="content-body">
           <div class="row">
@@ -15,15 +19,18 @@
                     />
                   </i>
                   <div class="stats">
-                    <h4 class="boldy mb-5">₦ 40,456.00</h4>
+                    <h4 class="boldy mb-5">
+                      <div >{{ wallet.walletBalance  }}</div>
+
+                    </h4>
                     <span>Wallet Balance</span>
                   </div>
                 </div>
                 <div class="text-center">
 
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary">Fund</button>
-                    <button type="button" class="btn btn-info">Witdraw</button>
+                    <button type="button" class="btn btn-primary" [routerLink]="['/wallet']" >Fund</button>
+                    <button type="button" class="btn btn-info" disabled>Witdraw</button>
                   </div>
                 </div>
 
@@ -40,15 +47,15 @@
                     />
                   </i>
                   <div class="stats">
-                    <h3 class="boldy mb-5">₿ 0.002</h3>
+                    <h3 class="boldy mb-5">₿ 0</h3>
                     <span>BTC Balance</span>
                   </div>
                 </div>
                 <div class="text-center">
 
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success">Buy</button>
-                    <button type="button" class="btn btn-warning">Sell</button>
+                    <button type="button" class="btn btn-primary" [routerLink]="['/purchase']">Buy</button>
+                    <button type="button" class="btn btn-warning" [routerLink]="['/sell']">Sell</button>
                   </div>
                 </div>
 
@@ -65,15 +72,15 @@
                     />
                   </i>
                   <div class="stats">
-                    <h3 class="boldy mb-5">Ξ 0.15</h3>
+                    <h3 class="boldy mb-5">Ξ 0</h3>
                     <span>ETH Balance</span>
                   </div>
                 </div>
                 <div class="text-center">
 
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success">Buy</button>
-                    <button type="button" class="btn btn-info">Sell</button>
+                    <button type="button" class="btn btn-primary" >Buy</button>
+                    <button type="button" class="btn btn-warning" [routerLink]="['/sell']">Sell</button>
                   </div>
                 </div>
               </div>
@@ -89,15 +96,15 @@
                     />
                   </i>
                   <div class="stats">
-                    <h3 class="boldy mb-5">Ł 100.00</h3>
+                    <h3 class="boldy mb-5">Ł 0</h3>
                     <span>LTC Balance</span>
                   </div>
                 </div>
                 <div class="text-center">
 
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-success">Buy</button>
-                    <button type="button" class="btn btn-info">Sell</button>
+                    <button type="button" class="btn btn-primary">Buy</button>
+                    <button type="button" class="btn btn-warning" [routerLink]="['/sell']">Sell</button>
                   </div>
                 </div>
               </div>
@@ -169,6 +176,36 @@
                 <p class="mb-0 red-text" [class]="ltcColor">
                 {{ ltcData.CHANGEPCTHOUR | number:'2.1-2'  }}%
                   <i class="ml-10" [class]="ltcIcon"></i>
+                </p>
+              </div>
+              <div class="coin-box2 flex align-items-center">
+                <div class="coin-icon mr-10">
+                  <img src="assets/data/crypto-dash/coin7.png" alt="" />
+                </div>
+
+                <h6 class="coin-name boldy">Monero</h6>
+                <h6 class="coin-price boldy">
+                  {{ xmrData.PRICE | currency: "₦ " }}
+                </h6>
+                <p class="mb-0 red-text" [class]="xmrColor">
+                {{ xmrData.CHANGEPCTHOUR | number:'2.1-2'  }}%
+                  <i class="ml-10" [class]="xmrIcon"></i>
+                </p>
+              </div>
+
+
+              <div class="coin-box2 flex align-items-center">
+                <div class="coin-icon mr-10">
+                  <img src="assets/data/crypto-dash/coin4.png" alt="" />
+                </div>
+
+                <h6 class="coin-name boldy">Ripple</h6>
+                <h6 class="coin-price boldy">
+                  {{ xrpData.PRICE | currency: "₦ " }}
+                </h6>
+                <p class="mb-0 red-text" [class]="xrpColor">
+                {{ xrpData.CHANGEPCTHOUR | number:'2.1-2'  }}%
+                  <i class="ml-10" [class]="xrpIcon"></i>
                 </p>
               </div>
             </div>

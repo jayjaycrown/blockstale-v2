@@ -15,6 +15,13 @@ export const ROUTES: RouteInfo[] = [
     icon: 'assets/data/crypto-dash/icons/1.png',
     class: ''
   },
+  {
+    path: '/wallet',
+    title: 'Wallet',
+    rtlTitle: 'لوحة القيادة',
+    icon: 'assets/data/crypto-dash/s1.png',
+    class: ''
+  },
   // {
   //   path: '/wallet',
   //   title: 'E-Wallet',

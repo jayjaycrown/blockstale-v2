@@ -1,0 +1,41 @@
+.navbar-transparent {
+  background-color: none !important;
+}
+
+.navbar .nav-item.avatar .dropdown-toggle img {
+  height: 35px;
+}
+
+.dropdown-menu.show {
+  right: 0 !important;
+  left: auto !important;
+}
+
+.purple.lighten-1 {
+  background-color: #7E10D3 !important;
+}
+
+.navbar {
+  font-weight: 300;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.navbar.navbar-dark .navbar-nav .nav-item.active>.nav-link {
+  background-color:
+    rgba(255, 255, 255, 0.1);
+}
+
+.navbar.navbar-dark .breadcrumb .nav-item .nav-link,
+.navbar.navbar-dark .navbar-nav .nav-item .nav-link {
+  color:
+    #fff;
+  -webkit-transition: .35s;
+  transition: .35s;
+}
+
+.navbar.navbar-dark .breadcrumb .nav-item .nav-link:hover,
+.navbar.navbar-dark .navbar-nav .nav-item .nav-link:hover {
+  color:
+    rgba(255, 255, 255, 0.75);
+}

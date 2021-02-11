@@ -11,7 +11,7 @@ export class CryptoChartService {
   constructor(private http: HttpClient) { }
 
   getCryptoPrice() {
-    const url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,LTC&tsyms=NGN'
+    const url = 'https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,ETH,LTC,XRP,XMR&tsyms=NGN'
     return this.http.get(url).pipe(retry(3));
   }
 }

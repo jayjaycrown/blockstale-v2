@@ -1,1 +1,71 @@
-<p>admin-login works!</p>
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 offset-sm-1">
+        <div class="card">
+          <div class="row">
+            <!-- <div class="col-md-6 left">
+
+            </div> -->
+            <div class="col-md-6  offset-md-3 right">
+              <!-- <div class="header">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-light disabled">Log In</button>
+                  <button type="button" class="btn btn-secondary" [routerLink]="['register']">Register</button>
+                </div>
+              </div> -->
+              <div class="form-div">
+                <h3>Login</h3>
+                <br>
+                <bs-alert type="danger" *ngIf="serverErrorMessages" dismissible="true" dismissOnTimeout="5000">
+                  <strong>Oops!</strong> {{serverErrorMessages}}
+                </bs-alert>
+                <alert type="success" *ngIf="successMessage" dismissible="true" dismissOnTimeout="5000">
+                  {{successMessage}}
+                </alert>
+                <form name="form" #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fa fa-envelope"></i></div>
+                    </div>
+                    <input type="number" name="phoneNumber" class="form-control" id="inlineFormInputGroup"
+                      placeholder="Enter your phone number" required #phoneNumber="ngModel"
+                      [(ngModel)]="model.phoneNumber"
+                      [ngClass]="{ 'is-invalid': signInForm.submitted && phoneNumber.invalid }" required phoneNumber>
+                    <div *ngIf="signInForm.submitted && phoneNumber.invalid" class="invalid-feedback">
+                      <div *ngIf="phoneNumber.errors.required">phoneNumber is required</div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><i class="fa fa-unlock" aria-hidden="true"></i></div>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Enter your password" name="password"
+                      [(ngModel)]="model.password" #password="ngModel"
+                      [ngClass]="{ 'is-invalid': signInForm.submitted && password.invalid }" required minlength="6" />
+                    <div *ngIf="signInForm.submitted && password.invalid" class="invalid-feedback">
+                      <div *ngIf="password.errors.required">Password is required</div>
+                      <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                    </div>
+                  </div>
+
+
+                  <input type="submit" class="btn btn-primary btn-lg btn-block"
+                    [disabled]="!signInForm.valid" value="Sign In">
+
+                </form>
+                <div class="forgot">
+                  <a href="" [routerLink]="['request-reset-password']">Forgot Password?</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

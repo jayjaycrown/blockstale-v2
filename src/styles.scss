@@ -4060,12 +4060,12 @@ and (orientation : portrait) {
 .nav>li>a:hover, .nav>li>a:focus {
     background-color: #fafafa;
 }
-.tab-content {
-    padding: 15px;
-    border: 1px solid #eaeaea;
-    background-color: #ffffff;
-    border-top: 0px;
-}
+// .tab-content {
+//     padding: 15px;
+//     border: 1px solid #eaeaea;
+//     background-color: #ffffff;
+//     border-top: 0px;
+// }
 .nav-tabs.nav-justified>li:last-child>a {
     margin-right: 0px;
 }
@@ -10053,6 +10053,12 @@ ul.info p {
   font-size: 14px !important;
     display: inline-block;
     width: 45%;
+    padding-right: 10px
+}
+.uprofile-info.v2 h5{
+  font-size: 14px !important;
+    display: inline-block;
+    width: 40%;
     padding-right: 10px
 }
 .uprofile-info li i {

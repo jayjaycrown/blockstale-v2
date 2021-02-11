@@ -1,24 +1,35 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CryptoChartService } from '../../services/crypto-chart.service';
+import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-dashboard',
   templateUrl: 'dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
+  successMessage;
+  serverErrorMessage;
   data;
   btcData:any = {};
   ethData:any = {};
-  ltcData:any = {};
+  ltcData: any = {};
+  xrpData: any = {};
+  xmrData:any = {};
   changepositive;
   iconClass;
   ethColor;
   ethIcon;
   ltcColor;
   ltcIcon;
-  constructor(private cryptoChart: CryptoChartService) {}
+  xrpColor;
+  xrpIcon;
+  xmrColor;
+  xmrIcon;
+  wallet = {
+    walletBalance: '0'
+  };
+  constructor(private cryptoChart: CryptoChartService, private user: UserService) {}
 
   ngOnInit() {
     this.cryptoChart.getCryptoPrice().subscribe((res: any) => {
@@ -48,8 +59,37 @@ export class DashboardComponent implements OnInit {
         this.ltcColor = 'green-text';
         this.ltcIcon = 'complete fa fa-arrow-up';
       }
+      this.xmrData = this.data.RAW.XMR.NGN;
+      if (this.xmrData.CHANGEPCTHOUR <= 0) {
+        this.xmrColor = 'red-text';
+        this.xmrIcon = 'cancelled fa fa-arrow-down';
+      } else {
+        this.xmrColor = 'green-text';
+        this.xmrIcon = 'complete fa fa-arrow-up';
+      }
+
+      this.xrpData = this.data.RAW.XRP.NGN;
+      if (this.xrpData.CHANGEPCTHOUR <= 0) {
+        this.xrpColor = 'red-text';
+        this.xrpIcon = 'cancelled fa fa-arrow-down';
+      } else {
+        this.xrpColor = 'green-text';
+        this.xrpIcon = 'complete fa fa-arrow-up';
+      }
+    }, err => {
+        this.serverErrorMessage = err;
+        console.log(err);
+    })
+
+    this.user.getWallet().subscribe((res:any) => {
+      console.log(res)
+      if (res) {
+        this.wallet = res;
+      }
+
     }, err => {
         console.log(err);
+        this.serverErrorMessage = err;
     })
   }
 }

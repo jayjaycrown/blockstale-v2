@@ -1,0 +1,38 @@
+
+<div class="content">
+  <div class="">
+  <div class="row">
+    <div class="col-md-12">
+      <bs-alert type="danger" *ngIf="errorMessage" dismissible="true" dismissOnTimeout="5000">
+        <strong>Oops!</strong> {{errorMessage}}
+      </bs-alert>
+      <alert type="success" *ngIf="successMessage" dismissible="true" dismissOnTimeout="5000">
+        {{successMessage}}
+      </alert>
+    </div>
+  </div>
+  <div class="row" *ngIf="verified">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <form name="form" #upgradeForm="ngForm" (ngSubmit)="upgradeForm.valid && onSubmit(token, upgradeForm)">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fa fa-user-secret" aria-hidden="true"></i></div>
+              </div>
+              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter your full name"
+                #fullName="ngModel" [(ngModel)]="model.fullName" name="fullName" required
+                [ngClass]="{'invalid-textbox' :upgradeForm.submitted && !fullName.valid }">
+              <div *ngIf="upgradeForm.submitted && !fullName.valid" class="alert alert-danger">
+                <label class="validation-message">This field is required.</label>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit"
+              [disabled]="!upgradeForm.valid">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

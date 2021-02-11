@@ -1,37 +1,53 @@
 <div class="content">
+  <bs-alert type="danger" *ngIf="serverErrorMessages" dismissible="true" dismissOnTimeout="5000">
+        <strong>Oops!</strong> {{serverErrorMessages}}
+  </bs-alert>
+  <bs-alert type="success" *ngIf="serverSuccessMessage" dismissible="true" dismissOnTimeout="5000">
+        {{serverSuccessMessage}}
+  </bs-alert>
   <div class="row">
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">
           <h4 class="card-title">Account Information</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body" *ngIf="showdetails">
           <div class="row">
             <div class="col-md-6">
               <h4 class="mt-0">Bank Details</h4>
-              <div class="uprofile-info v2">
-                <ul class="list-unstyled mb-0">
+              <div class="uprofile-info v2" *ngIf="!accountInfo">
+                <ul class="list-unstyled mb-0" *ngFor="let info of accountInformation">
                   <li class="pt0">
                     <h6 class="mt-0 mb-0">
                       <i class="fa fa-building"></i> Bank Name
                     </h6>
-                    <span>GT Bank</span>
+                    <span>{{ info.bank_name }}</span>
                   </li>
                   <li>
                     <h6 class="mt-0 mb-0">
                       <i class="fa fa-user-tie"></i>Name
                     </h6>
-                    <span>Solagbade Jonathan</span>
+                    <span>{{ info.account_name }}</span>
                   </li>
                   <li>
                     <h6 class="mt-0 mb-0">
                       <i class="fa fa-info"></i> A/C Number
                     </h6>
-                    <span>0150963360</span>
+                    <span>{{ info.account_no}}</span>
+                  </li>
+                  <li>
+                    <h6 class="mt-0 mb-0">
+                      <i class="fa fa-info"></i> Sort Code
+                    </h6>
+                    <span>{{ info.sortCode}}</span>
                   </li>
                 </ul>
 
-                <button class="btn btn-primary btn-block mt-15">
+
+              </div>
+              <div *ngIf="accountInfo">
+                No Account Information Provided
+                <button class="btn btn-primary btn-block mt-15" (click)="showBankUpload()">
                   Update Bank Details
                 </button>
               </div>
@@ -41,35 +57,66 @@
               <div class="uprofile-info v2">
                 <div class="trade-limit">
                   <h6 class="angle-round">
-                    Card Limit<span class="number"
-                      ><b class="blue-text"> 100 USD</b> / Unlimited</span
-                    >
+                    Card Limit
                   </h6>
-                  <div class="progress progress-cls">
+                  <span class="number">
+                    <b class="blue-text" *ngIf="!unlimitedAccount"> {{profileresult.account_limit| currency}}</b>
+                    <b class="blue-text" *ngIf="unlimitedAccount"> Unlimited</b>
+                     / Unlimited</span>
+                  <div class="progress progress-cls" *ngIf="upgrade100">
                     <div
                       class="progress-bar has-gradient-to-right-bottom"
-                      style="width: 33.3% !important;"
+                      [class]="'upgrade100'"
+                    ></div>
+                  </div>
+                  <div class="progress progress-cls" *ngIf="upgrade500">
+                    <div
+                      class="progress-bar has-gradient-to-right-bottom"
+                      [class]="'upgrade500'"
+                    ></div>
+                  </div>
+                  <div class="progress progress-cls" *ngIf="unlimitedAccount">
+                    <div
+                      class="progress-bar has-gradient-to-right-bottom"
+                      [class]="'unlimited'"
                     ></div>
                   </div>
                 </div>
 
                 <div class="trade-limit mb-0">
                   <h6 class="angle-round">
-                    E-Wallet Limit<span class="number"
-                      ><b class="blue-text">100 USD</b> / Unlimited</span
-                    >
+                    E-Wallet Limit
                   </h6>
-                  <div class="progress progress-cls mb-0">
+                  <span class="number">
+                    <b class="blue-text" *ngIf="!unlimitedAccount">{{profileresult.account_limit| currency}}</b>
+                    <b class="blue-text" *ngIf="unlimitedAccount"> Unlimited</b>
+                     / Unlimited</span>
+                  <div class="progress progress-cls" *ngIf="upgrade100">
                     <div
                       class="progress-bar has-gradient-to-right-bottom"
-                      style="width: 33.3% !important;"
+                      [class]="'upgrade100'"
+                    ></div>
+                  </div>
+                  <div class="progress progress-cls" *ngIf="upgrade500">
+                    <div
+                      class="progress-bar has-gradient-to-right-bottom"
+                      [class]="'upgrade500'"
+                    ></div>
+                  </div>
+                  <div class="progress progress-cls" *ngIf="unlimitedAccount">
+                    <div
+                      class="progress-bar has-gradient-to-right-bottom"
+                      [class]="'unlimited'"
                     ></div>
                   </div>
                 </div>
-
-                <button class="btn btn-primary btn-block mt-15">
-                  Increase Limit
-                </button>
+                <br>
+                <div *ngIf="upgrade100" class="text-center">
+                  <button class="btn btn-primary" (click)="showUpload1()">Increase Limit to $500</button>
+                </div>
+                <div *ngIf="upgrade500" class="text-center">
+                  <button class="btn btn-primary" (click)="showUpload2()">Increase Limit to unlimited</button>
+                </div>
               </div>
             </div>
           </div>
@@ -200,6 +247,97 @@ Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.
             </div>
           </form> -->
         </div>
+        <div class="card-body" *ngIf="ShowBankUploadForm">
+          <form name="form" class="form-row" #bankForn="ngForm"
+            (ngSubmit)="bankForn.valid && submitBank(bankForn)">
+            <div class="form-group col-md-6">
+              <label for="">Account Holder Name</label>
+              <input type="text" name="accountName" class="form-control" placeholder="Enter Account Name"
+                required [(ngModel)]="model.accountName" #accountName="ngModel"
+                [ngClass]="{ 'is-invalid': bankForn.submitted && accountName.invalid }" accountName>
+              <div *ngIf="bankForn.submitted && accountName.invalid" class="invalid-feedback">
+                <div *ngIf="accountName.errors.required">Account Name is required</div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="">Bank Name</label>
+              <input type="text" name="bankName" class="form-control" placeholder="Enter Bank Name" required
+                [(ngModel)]="model.bankName" #bankName="ngModel"
+                [ngClass]="{ 'is-invalid': bankForn.submitted && bankName.invalid }" bankName>
+              <div *ngIf="bankForn.submitted && bankName.invalid" class="invalid-feedback">
+                <div *ngIf="bankName.errors.required">Account Name is required</div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="">Account Number</label>
+              <input type="text" name="accountNo" class="form-control" placeholder="Enter Account Number"
+                required [(ngModel)]="model.accountNo" #accountNo="ngModel"
+                [ngClass]="{ 'is-invalid': bankForn.submitted && accountNo.invalid }" accountNo>
+              <div *ngIf="bankForn.submitted && accountNo.invalid" class="invalid-feedback">
+                <div *ngIf="accountNo.errors.required">Account Name is required</div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-6">
+              <label for="">Sortcode</label>
+              <input type="text" name="sortCode" class="form-control" placeholder="Enter sort Code"
+                required [(ngModel)]="model.sortCode" #sortCode="ngModel"
+                [ngClass]="{ 'is-invalid': bankForn.submitted && sortCode.invalid }" sortCode>
+              <div *ngIf="bankForn.submitted && sortCode.invalid" class="invalid-feedback">
+                <div *ngIf="sortCode.errors.required">Account Name is required</div>
+              </div>
+            </div>
+
+            <input type="submit" class="btn btn-primary btn-lg btn-block"
+              [disabled]="!bankForn.valid" value="Submit">
+          </form>
+        </div>
+        <div class="card-body" *ngIf="showUploadForm1">
+          <form name="form" #upgrade="ngForm" (ngSubmit)="upgrade.valid && submit(upgrade)">
+            <div class="form-row align-items-center">
+              <div class="col-md-6 offset-md-1">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fa fa-envelope-o"></i></div>
+                  </div>
+                  <input type="email" class="form-control" id="inlineFormInputGroup"
+                    placeholder="Enter your Email" name="email" [(ngModel)]="models.email" required
+                    #email="ngModel" [ngClass]="{'invalid-textbox' :upgrade.submitted && !email.valid }">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <button [disabled]="!upgrade.valid" type="submit"
+                  class="btn btn-primary mb-2 btn-sm">Upgrade
+                  Account</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+        <div class="card-body" *ngIf="ShowUploadForm2">
+          <form name="form" #upgradeUn="ngForm" (ngSubmit)="upgradeUn.valid && submitUn(upgradeUn)">
+            <div class="form-row align-items-center">
+              <div class="col-md-6 offset-md-1">
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fa fa-envelope"></i></div>
+                  </div>
+                  <input type="number" class="form-control" id="inlineFormInputGroup"
+                    placeholder="Enter your Bvn" name="bvn" [(ngModel)]="modelUn.bvn" required #bvn="ngModel"
+                    [ngClass]="{'invalid-textbox' :upgradeUn.submitted && !bvn.valid }">
+                </div>
+              </div>
+              <div class="col-md-4">
+                <button [disabled]="!upgradeUn.valid" type="submit"
+                  class="btn btn-primary btn-sm mb-2">Upgrade
+                  Account</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
       </div>
     </div>
     <div class="col-md-4">
@@ -218,22 +356,18 @@ Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.
                 src="assets/img/default-avatar.png"
               />
 
-              <h4 class="title">Mike Andrew</h4>
+              <h4 class="title">{{profileresult.full_name}}</h4>
             </a>
           </div>
           <div class="uprofile-info v2">
             <ul class="list-unstyled mb-0">
               <li class="pt0">
-                <h6 class="mt-0 mb-0"><i class="fa fa-envelope"></i> Email</h6>
-                <span>info@domain.com</span>
+                <h5 class="mt-0 mb-0"><i class="fa fa-envelope"></i> Email</h5>
+                <span>{{profileresult.email}}</span>
               </li>
               <li>
-                <h6 class="mt-0 mb-0"><i class="fa fa-home"></i> Address</h6>
-                <span>New York, USA</span>
-              </li>
-              <li>
-                <h6 class="mt-0 mb-0"><i class="fa fa-phone"></i> Phone</h6>
-                <span>(+3638) 734-3949</span>
+                <h5 class="mt-0 mb-0"><i class="fa fa-phone"></i> Phone</h5>
+                <span>{{profileresult.phone_number}}</span>
               </li>
             </ul>
           </div>

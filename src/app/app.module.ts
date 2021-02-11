@@ -6,8 +6,9 @@ import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
-import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // for HttpClient import:
@@ -26,6 +27,8 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { AuthInterceptor } from './_helpers/auth.interceptor';
 import { AlertModule } from 'ngx-bootstrap/alert';
 
+import { Angular4PaystackModule } from 'angular4-paystack';
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -41,9 +44,10 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     LoadingBarRouterModule,
     // for Core use:
     LoadingBarModule,
+    Angular4PaystackModule.forRoot('pk_test_f800b0dba70e0b2db874b4c0605aef1618346744'),
     AlertModule.forRoot(),
     ToastrModule.forRoot()
-  ],  declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
+  ],  declarations: [AppComponent, UserLayoutComponent, AuthLayoutComponent, AdminLayoutComponent],
 
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

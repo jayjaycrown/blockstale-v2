@@ -1,5 +1,15 @@
 <div class="content">
   <div class="row">
+    <div class="col-md-12">
+      <alert type="success" dismissible="true" dismissOnTimeout="5000" *ngIf="successMessage">
+        {{ successMessage }}
+      </alert>
+      <alert type="danger" dismissible="true" dismissOnTimeout="5000" *ngIf="serverErrorMessage">
+        {{ serverErrorMessage }}
+      </alert>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-4">
       <div class="card">
         <div class="card-header bg-primary">
@@ -38,7 +48,7 @@
         </div>
         <div class="card-footer bg-secondary text-center">
           <h5 style="margin-left: auto; margin-right: auto;">
-            Wallet Ballance: NGN 42,300.00
+            Wallet Ballance: {{ wallets.walletBalance  | currency : 'NGN'}}
           </h5>
         </div>
       </div>
@@ -64,154 +74,26 @@
                 >
                   <thead>
                     <tr>
-                      <th>Crypto Trade</th>
-                      <th>Sender ID</th>
-                      <th>Transaction ID</th>
-                      <th>Time</th>
-                      <th>Status</th>
-                      <th>Amount</th>
+                      <th>SN</th>
+                      <th>Amount (₦)</th>
+                      <th>Amount (<i class="fa fa-bitcoin"></i>)</th>
+                      <th>Payment Status</th>
+                      <th>Reference No</th>
+                      <th>Wallet Address</th>
+                      <th>Transfer Status</th>
+                      <th>Date Paid</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <div class="round img2">
-                          <img
-                            src="../../../assets/data/crypto-dash/coin1.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="designer-info">
-                          <h6>Bitcoin</h6>
-                        </div>
-                      </td>
-                      <td><small class="text-muted">gdh-34um3bbj</small></td>
-                      <td><small class="text-muted">HJD9R034JNN3N43</small></td>
-                      <td><small class="text-muted">10:23:45</small></td>
-                      <td>
-                        <span class="badge w-70 round-success">completed</span>
-                      </td>
-                      <td class="green-text boldy">+0,041BTC</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="round img2">
-                          <img
-                            src="../../../assets/data/crypto-dash/coin8.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="designer-info">
-                          <h6>Litecoin</h6>
-                        </div>
-                      </td>
-                      <td><small class="text-muted">gdh-34um3bbj</small></td>
-                      <td><small class="text-muted">HJD9R034JNN3N43</small></td>
-                      <td><small class="text-muted">12:53:25</small></td>
-                      <td>
-                        <span class="badge w-70 round-warning">Pending</span>
-                      </td>
-                      <td class="red-text boldy">-1,176LTC</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="round img2">
-                          <img
-                            src="../../../assets/data/crypto-dash/coin2.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="designer-info">
-                          <h6>Ethereum</h6>
-                        </div>
-                      </td>
-                      <td><small class="text-muted">gdh-34um3bbj</small></td>
-                      <td><small class="text-muted">HJD9R034JNN3N43</small></td>
-                      <td><small class="text-muted">04:03:25</small></td>
-                      <td>
-                        <span class="badge w-70 round-primary">exchanged </span>
-                      </td>
-                      <td class="blue-text boldy">0.023ETH</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="round img2">
-                          <img
-                            src="../../../assets/data/crypto-dash/coin4.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="designer-info">
-                          <h6>Ripple</h6>
-                        </div>
-                      </td>
-                      <td><small class="text-muted">gdh-34um3bbj</small></td>
-                      <td><small class="text-muted">HJD9R034JNN3N43</small></td>
-                      <td><small class="text-muted"> 09:33:02</small></td>
-                      <td>
-                        <span class="badge w-70 round-danger">Canceled</span>
-                      </td>
-                      <td class="green-text boldy">+107,0XRP</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="round img2">
-                          <img
-                            src="../../../assets/data/crypto-dash/coin1.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="designer-info">
-                          <h6>Bitcoin</h6>
-                        </div>
-                      </td>
-                      <td><small class="text-muted">gdh-34um3bbj</small></td>
-                      <td><small class="text-muted">HJD9R034JNN3N43</small></td>
-                      <td><small class="text-muted">10:23:45</small></td>
-                      <td>
-                        <span class="badge w-70 round-warning">pending</span>
-                      </td>
-                      <td class="green-text boldy">-0,098BTC</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="round img2">
-                          <img
-                            src="../../../assets/data/crypto-dash/coin3.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="designer-info">
-                          <h6>Dashcoin</h6>
-                        </div>
-                      </td>
-                      <td><small class="text-muted">gdh-34um3bbj</small></td>
-                      <td><small class="text-muted">HJD9R034JNN3N43</small></td>
-                      <td><small class="text-muted">09:33:02</small></td>
-                      <td>
-                        <span class="badge w-70 round-success">Completed</span>
-                      </td>
-                      <td class="red-text boldy">-2,76DAH</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="round img2">
-                          <img
-                            src="../../../assets/data/crypto-dash/coin5.png"
-                            alt=""
-                          />
-                        </div>
-                        <div class="designer-info">
-                          <h6>Bitdash</h6>
-                        </div>
-                      </td>
-                      <td><small class="text-muted">gdh-34um3bbj</small></td>
-                      <td><small class="text-muted">HJD9R034JNN3N43</small></td>
-                      <td><small class="text-muted">09:33:02</small></td>
-                      <td>
-                        <span class="badge w-70 round-success">Completed</span>
-                      </td>
-                      <td class="green-text boldy">+1,429DAH</td>
+                    <tr *ngFor="let history of buyHistories; let i = index">
+                      <td> {{i + 1}} </td>
+                      <td> {{history.amount_ngn}} </td>
+                      <td> {{history.amount_btc}} </td>
+                      <td> {{history.payment_status}} </td>
+                      <td> {{history.reference_no}} </td>
+                      <td> {{history.wallet_address}} </td>
+                      <td> {{history.coin_transfer_status}} </td>
+                      <td> {{history.date_paid}} </td>
                     </tr>
                   </tbody>
                 </table>
@@ -228,11 +110,13 @@
   <div class="card">
     <div class="card-header bg-primary">
       <h4 class="card-title pull-left w-text">Purchase Bitcoin from Wallet</h4>
+
     </div>
     <div class="card-body">
       <div class="row">
         <div class="col-md-12">
-          <div class="text-center">
+          <p>Current BTC Purchase Rate is: {{ buyRate | currency:'₦' }}/&#36; </p>
+          <!-- <div class="text-center">
             <h4>Choose crypto</h4>
             <div class="custom-radio-button">
               <div>
@@ -296,80 +180,99 @@
                 </label>
               </div>
             </div>
-          </div>
-          <div class="crypto-info-wrap">
-            <div class="">
+          </div> -->
+          <form name="buyBtc" class="" #buyBtc="ngForm" (ngSubmit)="buyBtc.form.valid && OnBuyBtc(buyBtc)">
+            <div class="crypto-info-wrap">
+              <div class="">
+                <div class="form-group">
+                  <label class="form-label">Wallet Address</label>
+                  <span class="desc"></span>
+
+                  <div class="input-group mb-10">
+                    <span class="input-group-addon">
+                      <span class="arrow"></span>
+                      <img src="assets/data/crypto-dash/icons/2.png" alt="icon" />
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="NNK;Djkhsal0q0ksnq-wnkknkwxbkja"
+                      required #walletAddress="ngModel" name="walletAddress"
+                          [(ngModel)]="buyModel.walletAddress"
+                          [ngClass]="{ 'is-invalid': buyBtc.submitted && walletAddress.invalid }" required
+                          walletAddress
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label class="form-label">NGN Currency</label>
+                    <!-- <span class="desc">minimum "100 USD"</span> -->
+                    <div class="controls">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="100" name="amount"
+                        (change)="fetchBtc(amount)"
+                          placeholder="Enter buy rate" required #amount="ngModel" [(ngModel)]="buyModel.amount"
+                          [ngClass]="{ 'is-invalid': buyBtc.submitted && amount.invalid }" required amount
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="form-label">.</label>
+                    <div class="controls">
+                      <img
+                        src="assets/data/crypto-dash/exchange-arrows.png"
+                        class="ml-4 mt-5 center-block"
+                        style="width: 25px;"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label class="form-label">BTC Equivalent</label>
+                    <span class="desc">"Exchanged BTC"</span>
+                    <div class="controls">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="0.001"
+                        [value]="someInfo"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="form-group">
-                <label class="form-label">Wallet Address</label>
-                <span class="desc"></span>
+                <label >Email</label>
+                <input
+                  type="email"
+                  placeholder="example@123.com"
+                  name="email" class="form-control" placeholder="Enter email" required
+                  #email="ngModel" [(ngModel)]="buyModel.email"
+                  [ngClass]="{ 'is-invalid': buyBtc.submitted && email.invalid }" required email
+                />
+              </div>
 
-                <div class="input-group mb-10">
-                  <span class="input-group-addon">
-                    <span class="arrow"></span>
-                    <img src="assets/data/crypto-dash/icons/2.png" alt="icon" />
-                  </span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="NNK;Djkhsal0q0ksnq-wnkknkwxbkja"
-                  />
-                </div>
+              <div class="col-md-12">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg mt-20 has-gradient-to-right-bottom"
+                  style="width: 100%;"
+                >
+                  Buy Bitcoin
+                </button>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-5">
-                <div class="form-group">
-                  <label class="form-label">NGN Currency</label>
-                  <!-- <span class="desc">minimum "100 USD"</span> -->
-                  <div class="controls">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="100"
-                      id="field-1"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <label class="form-label">.</label>
-                  <div class="controls">
-                    <img
-                      src="assets/data/crypto-dash/exchange-arrows.png"
-                      class="ml-4 mt-5 center-block"
-                      style="width: 25px;"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-5">
-                <div class="form-group">
-                  <label class="form-label">BTC Equivalent</label>
-                  <span class="desc">"Exchanged BTC"</span>
-                  <div class="controls">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="0.001"
-                      id="field-1"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+          </form>
 
-            <div class="col-md-12">
-              <button
-                type="button"
-                class="btn btn-primary btn-lg mt-20 has-gradient-to-right-bottom"
-                style="width: 100%;"
-              >
-                Buy Bitcoin
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -384,7 +287,8 @@
     <div class="card-body">
       <div class="row">
         <div class="col-md-12">
-          <div class="text-center">
+          <p>Current BTC Purchase Rate is: {{ buyRate | currency:'₦' }}/&#36; </p>
+          <!-- <div class="text-center">
             <h4>Choose crypto</h4>
             <div class="custom-radio-button">
               <div>
@@ -448,80 +352,98 @@
                 </label>
               </div>
             </div>
-          </div>
-          <div class="crypto-info-wrap">
-            <div class="">
+          </div> -->
+         <form name="buyBtc2" class="" #buyBtc2="ngForm" (ngSubmit)="buyBtc2.form.valid && OnBuyBtc2(buyBtc2)">
+            <div class="crypto-info-wrap">
+              <div class="">
+                <div class="form-group">
+                  <label class="form-label">Wallet Address</label>
+                  <span class="desc"></span>
+
+                  <div class="input-group mb-10">
+                    <span class="input-group-addon">
+                      <span class="arrow"></span>
+                      <img src="assets/data/crypto-dash/icons/2.png" alt="icon" />
+                    </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="NNK;Djkhsal0q0ksnq-wnkknkwxbkja"
+                      required #walletAddress="ngModel" name="walletAddress"
+                          [(ngModel)]="buyModel.walletAddress"
+                          [ngClass]="{ 'is-invalid': buyBtc2.submitted && walletAddress.invalid }" required
+                          walletAddress
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label class="form-label">NGN Currency</label>
+                    <!-- <span class="desc">minimum "100 USD"</span> -->
+                    <div class="controls">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="100" name="amount"
+                        (change)="fetchBtc(amount)"
+                          placeholder="Enter buy rate" required #amount="ngModel" [(ngModel)]="buyModel.amount"
+                          [ngClass]="{ 'is-invalid': buyBtc2.submitted && amount.invalid }" required amount
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="form-label">.</label>
+                    <div class="controls">
+                      <img
+                        src="assets/data/crypto-dash/exchange-arrows.png"
+                        class="ml-4 mt-5 center-block"
+                        style="width: 25px;"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div class="form-group">
+                    <label class="form-label">BTC Equivalent</label>
+                    <span class="desc">"Exchanged BTC"</span>
+                    <div class="controls">
+                      <input
+                        type="number"
+                        class="form-control"
+                        placeholder="0.001"
+                        [value]="someInfo"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="form-group">
-                <label class="form-label">Wallet Address</label>
-                <span class="desc"></span>
+                <label >Email</label>
+                <input
+                  type="email"
+                  placeholder="example@123.com"
+                  name="email" class="form-control" placeholder="Enter email" required
+                  #email="ngModel" [(ngModel)]="buyModel.email"
+                  [ngClass]="{ 'is-invalid': buyBtc2.submitted && email.invalid }" required email
+                />
+              </div>
 
-                <div class="input-group mb-10">
-                  <span class="input-group-addon">
-                    <span class="arrow"></span>
-                    <img src="assets/data/crypto-dash/icons/2.png" alt="icon" />
-                  </span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="NNK;Djkhsal0q0ksnq-wnkknkwxbkja"
-                  />
-                </div>
+              <div class="col-md-12">
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg mt-20 has-gradient-to-right-bottom"
+                  style="width: 100%;"
+                >
+                  Buy Bitcoin
+                </button>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-5">
-                <div class="form-group">
-                  <label class="form-label">NGN Currency</label>
-                  <!-- <span class="desc">minimum "100 USD"</span> -->
-                  <div class="controls">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="100"
-                      id="field-1"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <label class="form-label">.</label>
-                  <div class="controls">
-                    <img
-                      src="assets/data/crypto-dash/exchange-arrows.png"
-                      class="ml-4 mt-5 center-block"
-                      style="width: 25px;"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-5">
-                <div class="form-group">
-                  <label class="form-label">BTC Equivalent</label>
-                  <span class="desc">"Exchanged BTC"</span>
-                  <div class="controls">
-                    <input
-                      type="number"
-                      class="form-control"
-                      placeholder="0.001"
-                      id="field-1"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-12">
-              <button
-                type="button"
-                class="btn btn-primary btn-lg mt-20 has-gradient-to-right-bottom"
-                style="width: 100%;"
-              >
-                Buy Bitcoin
-              </button>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
